@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchPosts } from "../../api";
 import Post from "./PostsContents/Post";
 
-export default function Posts({setCurrentId}) {
+export default function Posts() {
     const [data, setData] = useState([]);
 
     useEffect (() => {
@@ -12,7 +12,7 @@ export default function Posts({setCurrentId}) {
       const findAll = async () => {
           try {
             await fetchPosts().then(res => {
-            //   console.log(res.data);
+              console.log(res.data);
               setData(res.data);
             });
           } catch (error) {
@@ -22,9 +22,9 @@ export default function Posts({setCurrentId}) {
     return (
         <>
             <div className="d-flex flex-wrap gap-2">
-            {
+            {   
                 data.map(el => {
-                    return <Post props={el} setCurrentId={setCurrentId}/>
+                    return <Post props={el}/>
                 })
             }
             </div>

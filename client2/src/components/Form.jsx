@@ -1,10 +1,9 @@
 import axios from "axios";
 import { React, useState } from "react";
 import FileBase from 'react-file-base64';
-import { updatePost } from "../api";
-import Posts from "./PostsContainer/Posts";
+// import Posts from "./PostsContainer/Posts";
 
-export default function Form({ currentId, setCurrentId }) {
+export default function Form() {
     const [postData, setPostData] = useState({
         creator: '',
         title: '',
@@ -17,23 +16,23 @@ export default function Form({ currentId, setCurrentId }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (currentId) {
+        // if (currentId) {
             try {
-                axios.patch(`http://localhost:5000/memory/${currentId}`, postData).then(res => {
+                axios.patch(`http://localhost:5000/memory/`, postData).then(res => {
                     console.log("updatedData", res.data);
                 });
             } catch (error) {
                 console.log(error);
             }
-        } else {
-            try {
-                axios.post("http://localhost:5000/memory", postData).then(res => {
-                    console.log("postdata", res.data);
-                });
-            } catch (error) {
-                console.log(error);
-            }
-        }
+        // } else {
+        //     try {
+        //         axios.post("http://localhost:5000/memory", postData).then(res => {
+        //             console.log("postdata", res.data);
+        //         });
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // }
 
     }
 

@@ -49,3 +49,7 @@ input[type=file]::file-selector-button {
     background: rgb(242, 45, 45);
     border: 1px solid rgb(242, 45, 45);
   }
+
+  .card-img-top:hover {
+    opacity: 2;
+  }
