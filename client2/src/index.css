@@ -3,7 +3,7 @@ body, html {
     color: white;
     height: 100%;
     margin: 0;
-  background-image: url("./images/patternpad.png");
+  background-image: url("./images/patternpad.svg");
   background-size: cover;
 
     /* background: rgb(251,63,63); */

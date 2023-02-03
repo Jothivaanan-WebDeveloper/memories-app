@@ -42,7 +42,7 @@ export default function Form() {
 
     return (
         <>
-            <div className="card" style={{ position: 'sticky', top: 0 }}>
+            <div className="card" style={{ position: 'sticky', top: "20px" }}>
                 <div className="card-body">
                     <h4 className="card-title mb-3">Share your thoughts ...</h4><hr />
                     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
