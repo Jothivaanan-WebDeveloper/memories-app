@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export default function Post(data) {
+export default function Post({data, setCurrentId}) {
     console.log("data", data);
     return (
         <>
@@ -14,13 +14,19 @@ export default function Post(data) {
                         {
                             (data.props.tags).map(el => {
 
-                                return <li class="list-inline-item text-primary">#{el}</li>
+                                return <li class="list-inline-item text-primary">{'#'+el }</li>
                             })
                         }
                     </ul>
                     <blockquote class="blockquote text-right">
                         <footer class="blockquote-footer">{data.props.creator}</footer>
                     </blockquote>
+                    <div className='d-flex justify-content-between'>
+                        <div><button className='btn btn-light btn-sm'>Like</button></div>
+                        <div><button className='btn btn-light btn-sm' style={{marginRight:"8px"}} onClick={() => {setCurrentId(post._id)}}>Edit</button>
+                            <button className='btn btn-light btn-sm'>Remove</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

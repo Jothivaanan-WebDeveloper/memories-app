@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchPosts } from "../../api";
 import Post from "./PostsContents/Post";
 
-export default function Posts() {
+export default function Posts({setCurrentId}) {
     const [data, setData] = useState([]);
 
     useEffect (() => {
@@ -24,7 +24,7 @@ export default function Posts() {
             <div className="d-flex flex-wrap gap-2">
             {
                 data.map(el => {
-                    return <Post props={el}/>
+                    return <Post props={el} setCurrentId={setCurrentId}/>
                 })
             }
             </div>

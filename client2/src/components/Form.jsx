@@ -1,9 +1,10 @@
 import axios from "axios";
 import { React, useState } from "react";
 import FileBase from 'react-file-base64';
-// import { createPost } from "../../action/posts";
+import { updatePost } from "../api";
+import Posts from "./PostsContainer/Posts";
 
-export default function Form() {
+export default function Form({ currentId, setCurrentId }) {
     const [postData, setPostData] = useState({
         creator: '',
         title: '',
@@ -16,13 +17,24 @@ export default function Form() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            axios.post("http://localhost:5000/memory", postData).then(res => {
-                console.log("postdata", res.data);
-            });
-        } catch (error) {
-            console.log(error);
+        if (currentId) {
+            try {
+                axios.patch(`http://localhost:5000/memory/${currentId}`, postData).then(res => {
+                    console.log("updatedData", res.data);
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            try {
+                axios.post("http://localhost:5000/memory", postData).then(res => {
+                    console.log("postdata", res.data);
+                });
+            } catch (error) {
+                console.log(error);
+            }
         }
+
     }
 
     const clearForm = () => {
@@ -31,9 +43,9 @@ export default function Form() {
 
     return (
         <>
-            <div className="card" style={{position: 'sticky',top:0}}>
+            <div className="card" style={{ position: 'sticky', top: 0 }}>
                 <div className="card-body">
-                    <h4 className="card-title mb-3">Share your thoughts ...</h4><hr/>
+                    <h4 className="card-title mb-3">Share your thoughts ...</h4><hr />
                     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
                         <div className="form-group mb-3">
                             <input type="text"
@@ -76,7 +88,7 @@ export default function Form() {
                             />
                         </div>
                         <div className="form-group">
-                            <span className="font-weight-bold">Photos</span><br/>
+                            <span className="font-weight-bold">Photos</span><br />
                             <FileBase
                                 type="file"
                                 multiple={false}
